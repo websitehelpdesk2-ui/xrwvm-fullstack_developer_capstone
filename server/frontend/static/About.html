@@ -1,7 +1,10 @@
 <html>
 <head>
   <!-- Link the style sheet here -->
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="/static/bootstrap.min.css">
 </head>
+<body>
 <div>
   <nav class="navbar navbar-expand-lg navbar-light" style="background-color:darkturquoise; height: 1in;">
     <div class="container-fluid">
@@ -25,44 +28,51 @@
     </div>
   </nav>
   
-    <div class="card" style="width: 80%;margin: auto; margin-top:5%;">
-      <div class="banner" name="about-header">
+  <div class="card" style="width: 80%; margin: auto; margin-top:5%; border: none;">
+    <div class="banner" name="about-header" style="padding: 30px; text-align: center; background-color: #f8f9fa; border-radius: 8px; margin-bottom: 30px;">
       <!-- Insert header information here -->
-      </div>
-      <div style="display: flex;flex-direction: row; margin:auto">
-      <div class="card" style="width: 30%;">
-        <img class="card-img-top" src="/static/person.png" alt="Card image">
+      <h1 class="display-5 fw-bold">About Us</h1>
+      <p class="lead">Welcome to Best Cars dealership, home to the best cars in North America. We deal in selling domestic and imported cars at reasonable prices.</p>
+    </div>
+
+    <div style="display: flex; flex-direction: row; justify-content: space-between; margin: auto; gap: 20px;">
+      
+      <!-- Team Member 1 -->
+      <div class="card" style="width: 32%; shadow-sm;">
+        <img class="card-img-top" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=400&h=400" alt="John Rogers" style="height: 250px; object-fit: cover;">
         <div class="card-body">
-          <p class="title">Person1</p>
-          <p>Person1 Title</p>
-          <p class="card-text">Some text that explains the person1 in about 2 short sentences</p>
-          <p>person1@example.com</p>
+          <h5 class="title fw-bold">John Rogers</h5>
+          <p class="text-muted small">Dealership Principal</p>
+          <p class="card-text">John has over 20 years of experience in the automotive industry. He specializes in foreign and domestic vehicle procurement and quality standards.</p>
+          <p class="text-primary small">j.rogers@bestcars.com</p>
         </div>
       </div>
 
-      <div class="card" style="width: 30%;">
-        <img class="card-img-top" src="/static/person.png" alt="Card image">
+      <!-- Team Member 2 -->
+      <div class="card" style="width: 32%; shadow-sm;">
+        <img class="card-img-top" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400&h=400" alt="Sarah Jenkins" style="height: 250px; object-fit: cover;">
         <div class="card-body">
-          <p class="title">Person2</p>
-          <p>Person2 Title</p>
-          <p class="card-text">Some text that explains the person2 in about 2 short sentences</p>
-          <p>person2@example.com</p>
+          <h5 class="title fw-bold">Sarah Jenkins</h5>
+          <p class="text-muted small">Operations Manager</p>
+          <p class="card-text">Sarah oversees our daily showroom operations. She ensures our customer support teams maintain maximum transparency and dedication.</p>
+          <p class="text-primary small">s.jenkins@bestcars.com</p>
         </div>
       </div>
 
-      <div class="card" style="width: 30%;">
-        <img class="card-img-top" src="/static/person.png" alt="Card image">
+      <!-- Team Member 3 -->
+      <div class="card" style="width: 32%; shadow-sm;">
+        <img class="card-img-top" src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=400&h=400" alt="Michael Chang" style="height: 250px; object-fit: cover;">
         <div class="card-body">
-          <p class="title">Person3</p>
-          <p>Person3 Title</p>
-          <p class="card-text">Some text that explains the person3 in about 2 short sentences</p>
-          <p>person3@example.com</p>
+          <h5 class="title fw-bold">Michael Chang</h5>
+          <p class="text-muted small">Lead Finance Advisor</p>
+          <p class="card-text">Michael works directly with regional and global auto-lenders. He coordinates custom credit options to ensure plans stay highly affordable.</p>
+          <p class="text-primary small">m.chang@bestcars.com</p>
         </div>
       </div>
+
     </div>
-    </div>
-    </div>
+  </div>
     
 </div>
-
+</body>
 </html>
