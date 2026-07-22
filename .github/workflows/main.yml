@@ -1,4 +1,4 @@
-name: 'Lint Code'
+name: 'main.yml'
 
 on:
   push:
