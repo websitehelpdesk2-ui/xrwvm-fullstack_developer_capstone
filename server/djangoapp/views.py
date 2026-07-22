@@ -131,9 +131,14 @@ def add_review(request):
     if not request.user.is_anonymous:
         data = json.loads(request.body)
         try:
+            # Ensure dealership ID is cast to an integer for MongoDB lookups
+            if 'dealership' in data:
+                data['dealership'] = int(data['dealership'])
+            
             response = post_review(data)
             return JsonResponse({"status": 200})
-        except:
+        except Exception as e:
+            logger.error(f"Error in add_review: {e}")
             return JsonResponse({"status": 401, "message": "Error in posting review"})
     else:
         return JsonResponse({"status": 403, "message": "Unauthorized"})
