@@ -1,12 +1,9 @@
 import logging
 import json
-from datetime import datetime
 
-from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
+from django.http import JsonResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
-from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
 
 from .models import CarMake, CarModel
@@ -24,16 +21,19 @@ def login_user(request):
         data = json.loads(request.body)
         username = data['userName']
         password = data['password']
-        
+
         user = authenticate(username=username, password=password)
         data = {"userName": username}
-        
+
         if user is not None:
             login(request, user)
             data = {"userName": username, "status": "Authenticated"}
         return JsonResponse(data)
-        
-    return JsonResponse({"status": "Method not allowed. Please submit a POST request."}, status=405)
+
+    return JsonResponse(
+        {"status": "Method not allowed. Please submit a POST request."},
+        status=405
+    )
 
 
 # Create a `logout_request` view to handle sign out request
@@ -53,20 +53,20 @@ def registration(request):
     first_name = data['firstName']
     last_name = data['lastName']
     email = data['email']
-    
+
     username_exist = False
     try:
         User.objects.get(username=username)
         username_exist = True
-    except:
+    except Exception:
         logger.debug("{} is new user".format(username))
 
     if not username_exist:
         user = User.objects.create_user(
-            username=username, 
-            first_name=first_name, 
-            last_name=last_name, 
-            password=password, 
+            username=username,
+            first_name=first_name,
+            last_name=last_name,
+            password=password,
             email=email
         )
         login(request, user)
@@ -85,11 +85,13 @@ def get_cars(request):
     car_models = CarModel.objects.select_related('car_make')
     cars = []
     for car_model in car_models:
-        cars.append({"CarModel": car_model.name, "CarMake": car_model.car_make.name})
+        cars.append({"CarModel": car_model.name,
+                     "CarMake": car_model.car_make.name})
     return JsonResponse({"CarModels": cars})
 
 
-# Update the `get_dealerships` view to render the index page with a list of dealerships
+# Update the `get_dealerships` view to render the index page with a list
+# of dealerships
 def get_dealerships(request, state="All"):
     if state == "All":
         endpoint = "/fetchDealers"
@@ -134,11 +136,12 @@ def add_review(request):
             # Ensure dealership ID is cast to an integer for MongoDB lookups
             if 'dealership' in data:
                 data['dealership'] = int(data['dealership'])
-            
-            response = post_review(data)
+
+            post_review(data)
             return JsonResponse({"status": 200})
         except Exception as e:
             logger.error(f"Error in add_review: {e}")
-            return JsonResponse({"status": 401, "message": "Error in posting review"})
+            return JsonResponse(
+                {"status": 401, "message": "Error in posting review"})
     else:
         return JsonResponse({"status": 403, "message": "Unauthorized"})
